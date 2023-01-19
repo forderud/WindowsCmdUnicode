@@ -9,6 +9,6 @@ Small command-line tool for testing of the folllowing:
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
 | Non-ASCII characters in `argv[]` are truncated to `?` if using `int main(int argc, char* argv[])` as entry point. | Instead use `int wmain(int argc, wchar_t* argv[])` as entry point. |
-| Windows command prompt (`cmd.exe`) seem unable to display non-ASCII characters written to console. | Instead use bash shell. |
+| Windows command prompt (`cmd.exe`) seem unable to display non-ASCII characters written to console. | Use bash shell instead. |
 
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.

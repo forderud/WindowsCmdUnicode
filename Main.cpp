@@ -3,6 +3,10 @@
 #include <fcntl.h>
 #include <stdio.h>
 
+/* 
+ISSUE: Windows command prompt (cmd.exe) seem unable to display non-ASCII characters written to console.
+WORK-AROUND: Use bash shell instead.
+*/
 
 #ifdef UNICODE
 
