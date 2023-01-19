@@ -17,7 +17,7 @@ int wmain(int argc, wchar_t* argv[]) {
         wprintf(L"ARGUMENT[%i]: %s\n", i, argv[i]);
     wprintf(L"\n");
 
-    // retrieve arguments
+    // retrieve arguments programatically
     argc = 0;
     wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
     // print command-line arguments again
@@ -34,6 +34,8 @@ int wmain(int argc, wchar_t* argv[]) {
 
 // ASCII entry-point
 int main(int argc, char* argv[]) {
+    // ISSUE: Non-ASCII argv characters are truncated to '?'
+
     // print command-line arguments
     printf("Regular command-line arguments:\n");
     for (int i = 0; i < argc; i++)
@@ -44,14 +46,13 @@ int main(int argc, char* argv[]) {
     fflush(stdout);
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
-    // retrieve arguments
+    // retrieve arguments programatically
     argc = 0;
     wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
     for (int i = 0; i < argc; i++)
         wprintf(L"ARGUMENT[%i]: %s\n", i, wargv[i]);
-
     LocalFree(wargv);
 
     return 0;
