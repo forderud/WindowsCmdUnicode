@@ -47,7 +47,7 @@ int main(int argc, char* argv[]) {
     fflush(stdout);
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
-    // retrieve arguments programatically
+    // retrieve arguments programatically (there's no ASCII variant of CommandLineToArgvW)
     argc = 0;
     wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
 
