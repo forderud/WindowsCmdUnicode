@@ -2,6 +2,7 @@ Small command-line tool for testing of the folllowing:
 * Pass unicode characters as command-line arguments. The executable filename already has a `Æ大` suffix which should automatically show up in `argv[0]`.
 * Print unicode characters back to the console.
 
+![screenshot](figures/screenshot.png)
 
 ### Known issues
 |         Issue             |       Workaround       |
