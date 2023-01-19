@@ -1,8 +1,6 @@
-Unicode console and command-line processing on Windows.
-
 Small command-line tool for testing of the folllowing:
-* Pass unicode characters as command-line arguments.
-* Print unicode characters to the console.
+* Pass unicode characters as command-line arguments. The executable filename has a `Æ大` suffix which should automatically show up in `argv[0]`.
+* Print unicode characters back to the console.
 
 
 ### Known issues
