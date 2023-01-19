@@ -1,4 +1,8 @@
-Unicode console and command-line processing on Windows
+Unicode console and command-line processing on Windows.
+
+Small command-line tool for testing of the folllowing:
+* Pass unicode characters as command-line arguments.
+* Print unicode characters to the console.
 
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
