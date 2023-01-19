@@ -4,6 +4,8 @@ Small command-line tool for testing of the folllowing:
 * Pass unicode characters as command-line arguments.
 * Print unicode characters to the console.
 
+
+### Known issues
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
 | Non-ASCII characters in arguments are truncated to `?` if using `int main(int argc, char* argv[])` as entry point. | Instead use `int wmain(int argc, wchar_t* argv[])` as entry point. |
