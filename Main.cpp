@@ -21,6 +21,11 @@ int wmain(int argc, wchar_t* argv[]) {
         wprintf(L"ARGUMENT[%i]: %s\n", i, argv[i]);
     wprintf(L"\n");
 
+    wprintf(L"__argv command-line arguments:\n");
+    for (int i = 0; i < __argc; i++)
+        wprintf(L"ARGUMENT[%i]: %s\n", i, __wargv[i]);
+    wprintf(L"\n");
+
     // retrieve arguments programatically
     argc = 0;
     wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
@@ -45,6 +50,11 @@ int main(int argc, char* argv[]) {
     printf("Regular command-line arguments:\n");
     for (int i = 0; i < argc; i++)
         printf("ARGUMENT[%i]: %s\n", i, argv[i]);
+    printf("\n");
+
+    printf("__argv command-line arguments:\n");
+    for (int i = 0; i < __argc; i++)
+        printf("ARGUMENT[%i]: %s\n", i, __argv[i]);
     printf("\n");
 
     // UTF-8 console output (flush before switching)
