@@ -20,6 +20,7 @@ int wmain(int argc, wchar_t* argv[]) {
     // retrieve arguments programatically
     argc = 0;
     wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
+
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
     for (int i = 0; i < argc; i++)
@@ -49,10 +50,12 @@ int main(int argc, char* argv[]) {
     // retrieve arguments programatically
     argc = 0;
     wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
+
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
     for (int i = 0; i < argc; i++)
         wprintf(L"ARGUMENT[%i]: %s\n", i, wargv[i]);
+
     LocalFree(wargv);
 
     return 0;
