@@ -8,6 +8,15 @@ ISSUE: Windows command prompt (cmd.exe) seem unable to display non-ASCII charact
 WORK-AROUND: Use bash shell instead.
 */
 
+void PrintArguments(int argc, wchar_t* argv[]) {
+    for (int i = 0; i < argc; i++)
+        wprintf(L"ARGUMENT[%i]: %s\n", i, argv[i]);
+}
+void PrintArguments(int argc, char* argv[]) {
+    for (int i = 0; i < argc; i++)
+        printf("ARGUMENT[%i]: %s\n", i, argv[i]);
+}
+
 #ifdef UNICODE
 
 // Unicode entry-point
@@ -17,13 +26,11 @@ int wmain(int argc, wchar_t* argv[]) {
 
     // print command-line arguments
     wprintf(L"Regular command-line arguments:\n");
-    for (int i = 0; i < argc; i++)
-        wprintf(L"ARGUMENT[%i]: %s\n", i, argv[i]);
+    PrintArguments(argc, argv);
     wprintf(L"\n");
 
     wprintf(L"__argv command-line arguments:\n");
-    for (int i = 0; i < __argc; i++)
-        wprintf(L"ARGUMENT[%i]: %s\n", i, __wargv[i]);
+    PrintArguments(__argc, __wargv);
     wprintf(L"\n");
 
     // retrieve arguments programatically
@@ -32,8 +39,7 @@ int wmain(int argc, wchar_t* argv[]) {
 
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
-    for (int i = 0; i < argc; i++)
-        wprintf(L"ARGUMENT[%i]: %s\n", i, wargv[i]);
+    PrintArguments(argc, wargv);
 
     LocalFree(wargv);
 
@@ -48,13 +54,11 @@ int main(int argc, char* argv[]) {
 
     // print command-line arguments
     printf("Regular command-line arguments:\n");
-    for (int i = 0; i < argc; i++)
-        printf("ARGUMENT[%i]: %s\n", i, argv[i]);
+    PrintArguments(argc, argv);
     printf("\n");
 
     printf("__argv command-line arguments:\n");
-    for (int i = 0; i < __argc; i++)
-        printf("ARGUMENT[%i]: %s\n", i, __argv[i]);
+    PrintArguments(__argc, __argv);
     printf("\n");
 
     // UTF-8 console output (flush before switching)
@@ -67,8 +71,7 @@ int main(int argc, char* argv[]) {
 
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
-    for (int i = 0; i < argc; i++)
-        wprintf(L"ARGUMENT[%i]: %s\n", i, wargv[i]);
+    PrintArguments(argc, wargv);
 
     LocalFree(wargv);
 
