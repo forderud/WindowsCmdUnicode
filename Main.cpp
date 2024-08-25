@@ -2,6 +2,7 @@
 #include <io.h>
 #include <fcntl.h>
 #include <stdio.h>
+#include <memory>
 
 /* 
 ISSUE: Windows command prompt (cmd.exe) seem unable to display non-ASCII characters written to console.
@@ -33,15 +34,13 @@ int wmain(int argc, wchar_t* argv[]) {
     PrintArguments(__argc, __wargv);
     wprintf(L"\n");
 
-    // retrieve arguments programatically
-    argc = 0;
-    wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
+    // retrieve command-line arguments programatically
+    std::unique_ptr<WCHAR*, HLOCAL(*)(HLOCAL)> wargv(CommandLineToArgvW(GetCommandLineW(), &argc), LocalFree);
+
 
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
-    PrintArguments(argc, wargv);
-
-    LocalFree(wargv);
+    PrintArguments(argc, wargv.get());
 
     return 0;
 }
