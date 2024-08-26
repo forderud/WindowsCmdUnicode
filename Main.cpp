@@ -66,13 +66,11 @@ int main(int argc, char* argv[]) {
 
     // retrieve arguments programatically (there's no ASCII variant of CommandLineToArgvW)
     argc = 0;
-    wchar_t** wargv = CommandLineToArgvW(GetCommandLineW(), &argc);
+    std::unique_ptr<wchar_t*, HLOCAL(*)(HLOCAL)> wargv(CommandLineToArgvW(GetCommandLineW(), &argc), LocalFree);
 
     // print command-line arguments again
     wprintf(L"GetCommandLine command-line arguments:\n");
-    PrintArguments(argc, wargv);
-
-    LocalFree(wargv);
+    PrintArguments(argc, wargv.get());
 
     return 0;
 }
