@@ -35,7 +35,7 @@ int wmain(int argc, wchar_t* argv[]) {
     wprintf(L"\n");
 
     // retrieve command-line arguments programatically
-    std::unique_ptr<WCHAR*, HLOCAL(*)(HLOCAL)> wargv(CommandLineToArgvW(GetCommandLineW(), &argc), LocalFree);
+    std::unique_ptr<wchar_t*, HLOCAL(*)(HLOCAL)> wargv(CommandLineToArgvW(GetCommandLineW(), &argc), LocalFree);
 
 
     // print command-line arguments again
