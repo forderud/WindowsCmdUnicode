@@ -23,6 +23,7 @@ void PrintArguments(int argc, char* argv[]) {
 // Unicode entry-point
 int wmain(int argc, wchar_t* argv[]) {
     // UTF-8 console output
+    //SetConsoleOutputCP(CP_UTF8);
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
     // print command-line arguments
