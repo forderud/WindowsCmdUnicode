@@ -26,6 +26,8 @@ int wmain(int argc, wchar_t* argv[]) {
     //SetConsoleOutputCP(CP_UTF8);
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
+    wprintf(L"Smiley: \U0001F625\n"); // dissapointed by relieved smiley (works from bash)
+
     // print command-line arguments
     wprintf(L"Regular command-line arguments:\n");
     PrintArguments(argc, argv);
