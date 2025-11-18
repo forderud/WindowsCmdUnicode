@@ -53,6 +53,8 @@ int wmain(int argc, wchar_t* argv[]) {
 int main(int argc, char* argv[]) {
     // ISSUE: Non-ASCII argv characters are truncated to '?'
 
+    printf(u8"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works from bash)
+
     // print command-line arguments
     printf("Regular command-line arguments:\n");
     PrintArguments(argc, argv);
