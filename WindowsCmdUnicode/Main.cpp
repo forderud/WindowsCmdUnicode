@@ -5,7 +5,7 @@
 #include <memory>
 
 /* 
-ISSUE: Windows command prompt (cmd.exe) seem unable to display non-ASCII characters written to console.
+ISSUE: Windows command prompt (cmd.exe) seem unable to display >2 byte "surrogate" characters written to console.
 WORK-AROUND: Use bash shell instead.
 */
 
