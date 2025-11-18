@@ -1,6 +1,6 @@
 Small command-line tool for testing of the folllowing:
 * Pass unicode characters as command-line arguments. The executable filename already has a `Æ大` suffix which should automatically show up in `argv[0]`.
-* Print unicode characters like `🤍` (U+1F90D white heart) back to the console.
+* Print >2 byte "surrogate" unicode characters like `🤍` (U+1F90D white heart) back to the console.
 
 ![screenshot](figures/screenshot.png)
 
