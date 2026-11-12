@@ -14,7 +14,7 @@ Small command-line tool for testing of the folllowing:
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.
 
 ## UTF-8 display in Command Prompt
-First need to change the active code page with `chcp 65001` to activate UTF-8 mode.
+First need to change the active code page with [`chcp 65001`](https://learn.microsoft.com/en-us/windows/win32/intl/code-page-identifiers) to activate UTF-8 mode.
 ```
 >chcp 65001
 Active code page: 65001
