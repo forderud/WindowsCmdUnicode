@@ -25,5 +25,7 @@ Active code page: 65001
 Kåre Sæther er en ørn 🤍.
 ```
 
+The default code page appear to be [`437`](https://en.wikipedia.org/wiki/Code_page_437) (extended ASCII).
+
 ## Links
 * [Windows Command-Line: Unicode and UTF-8 Output Text Buffer](https://devblogs.microsoft.com/commandline/windows-command-line-unicode-and-utf-8-output-text-buffer/)
