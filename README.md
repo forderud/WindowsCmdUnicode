@@ -12,3 +12,6 @@ Small command-line tool for testing of the folllowing:
 | Windows command prompt (`cmd.exe`) seem unable to display >2 byte "surrogate" characters written to console. | Use bash shell instead. |
 
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.
+
+## Links
+* [Windows Command-Line: Unicode and UTF-8 Output Text Buffer](https://devblogs.microsoft.com/commandline/windows-command-line-unicode-and-utf-8-output-text-buffer/)
