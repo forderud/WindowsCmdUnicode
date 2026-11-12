@@ -13,5 +13,17 @@ Small command-line tool for testing of the folllowing:
 
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.
 
+## UTF-8 display in Command Prompt
+First need to change the active code page with `chcp 65001` to activate UTF-8 mode.
+```
+>chcp 65001
+Active code page: 65001
+
+>type UTF-8_BOM.txt
+﻿Kåre Sæther er en ørn 🤍.
+>type UTF-8.txt
+Kåre Sæther er en ørn 🤍.
+```
+
 ## Links
 * [Windows Command-Line: Unicode and UTF-8 Output Text Buffer](https://devblogs.microsoft.com/commandline/windows-command-line-unicode-and-utf-8-output-text-buffer/)
