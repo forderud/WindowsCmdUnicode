@@ -22,10 +22,10 @@ void PrintArguments(int argc, char* argv[]) {
 
 // Unicode entry-point
 int wmain(int argc, wchar_t* argv[]) {
-    // UTF-8 console output
     //SetConsoleOutputCP(CP_UTF8);
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
+    // UTF-16 console output
     wprintf(L"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works from bash)
     wprintf(L"White heart: \U0001F90D\n"); //  (works from bash)
     wprintf(L"\n");
@@ -55,6 +55,7 @@ int wmain(int argc, wchar_t* argv[]) {
 int main(int argc, char* argv[]) {
     // ISSUE: Non-ASCII argv characters are truncated to '?'
 
+    // UTF-8 console output
     printf(u8"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works after "chcp 65001")
     printf(u8"White heart: \U0001F90D\n"); // (works after "chcp 65001")
     printf(u8"\n");
