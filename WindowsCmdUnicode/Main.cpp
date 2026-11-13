@@ -24,6 +24,13 @@ void PrintArguments(int argc, char* argv[]) {
 int wmain(int argc, wchar_t* argv[]) {
     //SetConsoleOutputCP(CP_UTF8);
 
+    {
+        // bypass standard output and write directly to console
+        const wchar_t text[] = L"Headphone: \U0001F3A7\n";
+        DWORD written = 0;
+        WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), text, (DWORD)wcslen(text), &written, nullptr); // works in all consoles
+    }
+
     // configuring either _O_U8TEXT, _O_U16TEXT or _O_WTEXT fixes unicode output to bash
     //_setmode(_fileno(stdout), _O_U8TEXT); //
     _setmode(_fileno(stdout), _O_U16TEXT); //
