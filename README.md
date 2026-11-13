@@ -9,7 +9,7 @@ Small command-line tool for testing of the folllowing:
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
 | Non-ASCII characters in `argv[]` command-line arguments are truncated to `?` if using `int main(int argc, char* argv[])` as entry point. | Instead use `int wmain(int argc, wchar_t* argv[])` as entry point. |
-| `wprintf` unable to print >2 byte "surrogate" (non-BMP) characters to Windows command prompt (`cmd.exe`). | Use `WriteConsoleW` instead of `wprintf` or switch to bash shell. |
+| `wprintf` unable to print >2 byte "surrogate" (non-BMP) characters to Windows command prompt. | Use `WriteConsoleW` instead of `wprintf` or switch to bash shell. |
 
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.
 
