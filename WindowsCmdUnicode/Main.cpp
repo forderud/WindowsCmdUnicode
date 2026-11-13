@@ -23,6 +23,7 @@ void PrintArguments(int argc, char* argv[]) {
 // Unicode entry-point
 int wmain(int argc, wchar_t* argv[]) {
     //SetConsoleOutputCP(CP_UTF8);
+    // TODO: Test _O_U16TEXT
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
     // UTF-16 console output
