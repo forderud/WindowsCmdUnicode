@@ -23,8 +23,8 @@ void PrintArguments(int argc, char* argv[]) {
 // Unicode entry-point
 int wmain(int argc, wchar_t* argv[]) {
     //SetConsoleOutputCP(CP_UTF8);
-    // TODO: Test _O_U16TEXT
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
+    //_setmode(_fileno(stdout), _O_U16TEXT); //
 
     // UTF-16 console output
     wprintf(L"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works from bash)
