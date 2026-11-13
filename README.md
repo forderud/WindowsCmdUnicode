@@ -27,5 +27,12 @@ Kåre Sæther er en ørn 🤍.
 
 The default code page appear to be [`437`](https://en.wikipedia.org/wiki/Code_page_437) (extended ASCII).
 
+## UTF-16 display in Command Prompt
+UTF-16 LE display seem to work out-of-the-box:
+```
+>type UTF-16_LE.txt
+Kåre Sæther er en ørn 🤍.
+```
+
 ## Links
 * [Windows Command-Line: Unicode and UTF-8 Output Text Buffer](https://devblogs.microsoft.com/commandline/windows-command-line-unicode-and-utf-8-output-text-buffer/)
