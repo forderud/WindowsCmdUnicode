@@ -24,9 +24,10 @@ void PrintArguments(int argc, char* argv[]) {
 int wmain(int argc, wchar_t* argv[]) {
     //SetConsoleOutputCP(CP_UTF8);
 
-    // configuring either _O_U8TEXT or _O_U16TEXT fixes unicode output from bash
+    // configuring either _O_U8TEXT, _O_U16TEXT or _O_WTEXT fixes unicode output to bash
     //_setmode(_fileno(stdout), _O_U8TEXT); //
     _setmode(_fileno(stdout), _O_U16TEXT); //
+    //_setmode(_fileno(stdout), _O_WTEXT); //
 
     // UTF-16 console output
     wprintf(L"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works from bash)
