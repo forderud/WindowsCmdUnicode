@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <stdio.h>
 #include <memory>
+#include <iostream>
 
 /* 
 ISSUE: Windows command prompt (cmd.exe) seem unable to display >2 byte "surrogate" characters written to console.
