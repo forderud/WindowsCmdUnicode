@@ -4,7 +4,7 @@ Small command-line tool for testing of the folllowing:
 
 ![screenshot](figures/screenshot.png)
 
-### Known issues
+### Detected issues
 
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
