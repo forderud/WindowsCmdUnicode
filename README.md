@@ -1,6 +1,6 @@
 Small command-line tool for testing of the folllowing:
 * Pass unicode characters as command-line arguments. The executable filename already has a `Æ大` suffix which should automatically show up in `argv[0]`.
-* Print >2 byte "surrogate" (non-BMP) unicode characters like white heart `🤍` ([U+1F90D](https://graphemica.com/%F0%9F%A4%8D)) or headphone `🎧` ([U+1F3A7](https://graphemica.com/%F0%9F%8E%A7)) back to the console.
+* Print >2 byte (non-BMP) "surrogate" unicode characters like white heart `🤍` ([U+1F90D](https://graphemica.com/%F0%9F%A4%8D)) or headphone `🎧` ([U+1F3A7](https://graphemica.com/%F0%9F%8E%A7)) back to the console.
 
 ![screenshot](figures/screenshot.png)
 
@@ -9,7 +9,7 @@ Small command-line tool for testing of the folllowing:
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
 | Non-ASCII characters in `argv[]` command-line arguments are truncated to `?` if using `int main(int argc, char* argv[])` as entry point. | Instead use `int wmain(int argc, wchar_t* argv[])` as entry point. |
-| `wprintf` unable to print >2 byte "surrogate" (non-BMP) characters to Windows command prompt. | Use `WriteConsoleW` instead of `wprintf` or switch to bash shell. |
+| `wprintf` unable to print >2 byte (non-BMP) "surrogate" characters to Windows command prompt. | Use `WriteConsoleW` instead of `wprintf` or switch to bash shell. |
 
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.
 
