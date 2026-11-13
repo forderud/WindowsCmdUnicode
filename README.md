@@ -16,12 +16,12 @@ Please contact the repo author if you discover more problems or are aware of bet
 ## UTF-8 display in Command Prompt
 First need to change the active code page with [`chcp 65001`](https://learn.microsoft.com/en-us/windows/win32/intl/code-page-identifiers) to activate UTF-8 mode.
 ```
->chcp 65001
+> chcp 65001
 Active code page: 65001
 
->type UTF-8_BOM.txt
+> type UTF-8_BOM.txt
 ﻿Kåre Sæther er en ørn 🤍.
->type UTF-8.txt
+> type UTF-8.txt
 Kåre Sæther er en ørn 🤍.
 ```
 
@@ -30,7 +30,7 @@ The default code page appear to be [`437`](https://en.wikipedia.org/wiki/Code_pa
 ## UTF-16 display in Command Prompt
 UTF-16 LE display seem to work out-of-the-box:
 ```
->type UTF-16_LE.txt
+> type UTF-16_LE.txt
 Kåre Sæther er en ørn 🤍.
 ```
 
