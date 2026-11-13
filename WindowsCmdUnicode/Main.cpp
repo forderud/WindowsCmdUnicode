@@ -27,6 +27,8 @@ int wmain(int argc, wchar_t* argv[]) {
     _setmode(_fileno(stdout), _O_U8TEXT); // confirmed to work from bash
 
     wprintf(L"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works from bash)
+    wprintf(L"White heart: \U0001F90D\n"); //  (works from bash)
+    wprintf(L"\n");
 
     // print command-line arguments
     wprintf(L"Regular command-line arguments:\n");
@@ -54,6 +56,8 @@ int main(int argc, char* argv[]) {
     // ISSUE: Non-ASCII argv characters are truncated to '?'
 
     printf(u8"Headphone: \U0001F3A7\n"); // https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF (works from bash)
+    printf(u8"White heart: \U0001F90D\n");
+    printf(u8"\n");
 
     // print command-line arguments
     printf("Regular command-line arguments:\n");
