@@ -34,5 +34,7 @@ UTF-16 LE display seem to work out-of-the-box:
 Kåre Sæther er en ørn 🤍.
 ```
 
+UTF-16 BE display does _not_ work by default.
+
 ## Links
 * [Windows Command-Line: Unicode and UTF-8 Output Text Buffer](https://devblogs.microsoft.com/commandline/windows-command-line-unicode-and-utf-8-output-text-buffer/)
