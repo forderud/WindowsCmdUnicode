@@ -28,11 +28,8 @@ int wmain(int argc, wchar_t* argv[]) {
     const wchar_t headphone[] = L"Headphone: \U0001F3A7\n"; // non-BMP character https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF
     const wchar_t heart[] = L"White heart: \U0001F90D\n"; // non-BMP character
 
-    {
-        // bypass standard output and write directly to console
-        DWORD written = 0;
-        WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), headphone, (DWORD)wcslen(headphone), &written, nullptr); // works in all consoles
-    }
+    // bypass standard output and write directly to console
+    WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), headphone, (DWORD)wcslen(headphone), nullptr, nullptr); // works in all consoles
 
     // configuring either _O_U8TEXT, _O_U16TEXT or _O_WTEXT fixes unicode output to bash
     //_setmode(_fileno(stdout), _O_U8TEXT); //
