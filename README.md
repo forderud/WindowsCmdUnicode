@@ -31,7 +31,7 @@ The default code page appear to be [`437`](https://en.wikipedia.org/wiki/Code_pa
 UTF-16 LE display **works out-of-the-box**, including >2 byte (non-BMP) "surrogate" unicode characters:
 ```
 > type UTF-16_LE.txt
-Kåre Sæther er en ørn 🤍.
+Kåre Sæther er en ørn 🎧🤍.
 ```
 
 UTF-16 BE display does _not_ work by default.
