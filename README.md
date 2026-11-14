@@ -20,9 +20,9 @@ First need to change the active code page with [`chcp 65001`](https://learn.micr
 Active code page: 65001
 
 > type UTF-8_BOM.txt
-﻿Kåre Sæther er en ørn 🤍.
+ ﻿Kåre Sæther er en ørn 🎧🤍.
 > type UTF-8.txt
-Kåre Sæther er en ørn 🤍.
+Kåre Sæther er en ørn 🎧🤍.
 ```
 
 The default code page appear to be [`437`](https://en.wikipedia.org/wiki/Code_page_437) (extended ASCII).
