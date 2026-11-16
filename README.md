@@ -40,5 +40,6 @@ UTF-16 BE display does _not_ work by default.
 * [Windows Command-Line: Unicode and UTF-8 Output Text Buffer](https://devblogs.microsoft.com/commandline/windows-command-line-unicode-and-utf-8-output-text-buffer/)
 
 ## Windows Terminal issues
+* [Emojis not displayed when using wprintf](https://aka.ms/AA145gq0)
 * [Issue with Printing Emojis on Windows Console](https://github.com/microsoft/terminal/issues/18124) - closed but not fixed
 * [Emojis are not displayed when using wide string output](https://github.com/microsoft/terminal/issues/12457) - closed but not fixed
