@@ -23,6 +23,7 @@ void PrintArguments(int argc, char* argv[]) {
 
 // Unicode entry-point
 int wmain(int argc, wchar_t* argv[]) {
+    wprintf(L"# Unicode mode\n");
     //SetConsoleOutputCP(CP_UTF8);
 
     const wchar_t headphone[] = L"Headphone: \U0001F3A7\n"; // non-BMP character https://en.wikibooks.org/wiki/Unicode/Character_reference/1F000-1FFFF
@@ -64,6 +65,7 @@ int wmain(int argc, wchar_t* argv[]) {
 
 // ASCII entry-point
 int main(int argc, char* argv[]) {
+    printf("# Non-Unicode mode\n");
     // ISSUE: Non-ASCII argv characters are truncated to '?'
 
     // UTF-8 console output
