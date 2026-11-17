@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <memory>
 #include <iostream>
+#include <streambuf>
+#include <stdarg.h>
 
 /* 
 ISSUE: Windows command prompt (cmd.exe) seem unable to display >2 byte "surrogate" characters written to console.
@@ -21,6 +23,79 @@ void PrintArguments(int argc, char* argv[]) {
 
 #ifdef UNICODE
 
+// UCRT writes wide console output one wchar_t at a time, which splits surrogate pairs.
+// Work-around: write whole strings with WriteConsoleW (CRT stream if redirected).
+void WriteStdout(const wchar_t* str, size_t len) {
+    HANDLE out = GetStdHandle(STD_OUTPUT_HANDLE);
+    static const bool isConsole = [out] { DWORD mode = 0; return GetConsoleMode(out, &mode) != 0; }();
+    if (isConsole) {
+        fflush(stdout);
+        WriteConsoleW(out, str, (DWORD)len, nullptr, nullptr);
+    } else {
+        fwprintf(stdout, L"%.*s", (int)len, str);
+    }
+}
+
+// wprintf replacement that formats into a buffer before writing
+int wprintf_console(const wchar_t* format, ...) {
+    va_list args;
+    va_start(args, format);
+    int len = _vscwprintf(format, args);
+    va_end(args);
+    if (len < 0)
+        return len;
+
+    std::wstring buf(len, L'\0');
+    va_start(args, format);
+    vswprintf_s(&buf[0], buf.size() + 1, format, args);
+    va_end(args);
+
+    WriteStdout(buf.data(), buf.size());
+    return len;
+}
+
+// std::wcout stream buffer that writes whole chunks
+class ConsoleStreambuf : public std::wstreambuf {
+public:
+    ConsoleStreambuf() {
+        setp(m_buf, m_buf + _countof(m_buf) - 1); // reserve 1 slot for overflow char
+    }
+    ~ConsoleStreambuf() override {
+        sync();
+    }
+
+protected:
+    int_type overflow(int_type ch) override {
+        if (ch != traits_type::eof()) {
+            *pptr() = traits_type::to_char_type(ch);
+            pbump(1);
+        }
+        Flush();
+        return traits_type::not_eof(ch);
+    }
+    int sync() override {
+        Flush();
+        return 0;
+    }
+
+private:
+    void Flush() {
+        size_t len = pptr() - pbase();
+        wchar_t carry = 0; // keep trailing high surrogate for next chunk
+        if (len > 0 && IS_HIGH_SURROGATE(pbase()[len - 1]))
+            carry = pbase()[--len];
+
+        WriteStdout(pbase(), len);
+        setp(m_buf, m_buf + _countof(m_buf) - 1);
+        if (carry) {
+            *pptr() = carry;
+            pbump(1);
+        }
+    }
+
+    wchar_t m_buf[1024];
+};
+
 // Unicode entry-point
 int wmain(int argc, wchar_t* argv[]) {
     wprintf(L"# Unicode mode\n");
@@ -33,6 +108,7 @@ int wmain(int argc, wchar_t* argv[]) {
     WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), headphone, (DWORD)wcslen(headphone), nullptr, nullptr); // works in all consoles
 
     // configuring either _O_U8TEXT, _O_U16TEXT or _O_WTEXT fixes unicode output to bash
+    fflush(stdout); // flush before switching
     //_setmode(_fileno(stdout), _O_U8TEXT); //
     _setmode(_fileno(stdout), _O_U16TEXT); //
     //_setmode(_fileno(stdout), _O_WTEXT); //
@@ -40,6 +116,15 @@ int wmain(int argc, wchar_t* argv[]) {
     // UTF-16 console output
     wprintf(headphone); // only works from bash
     wprintf(heart); // only works from bash
+    wprintf(L"\n");
+
+    wprintf_console(L"%s", headphone); // works in all consoles
+    wprintf_console(L"%s", heart); // works in all consoles
+
+    ConsoleStreambuf consoleBuf;
+    std::wstreambuf* prevBuf = std::wcout.rdbuf(&consoleBuf);
+    std::wcout << headphone << heart << std::endl; // works in all consoles
+    std::wcout.rdbuf(prevBuf);
     wprintf(L"\n");
 
     // print command-line arguments
