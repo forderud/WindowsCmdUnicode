@@ -9,7 +9,7 @@ Small command-line tool for testing of the folllowing:
 |         Issue             |       Workaround       |
 |---------------------------|------------------------|
 | Non-ASCII characters in `argv[]` command-line arguments are truncated to `?` if using `int main(int argc, char* argv[])` as entry point. | Use `int wmain(int argc, wchar_t* argv[])` as entry point. |
-| `wprintf` & `std::wcout` unable to print >2 byte (non-BMP) "surrogate" characters to Windows command prompt. | Use `WriteConsoleW` instead of `wprintf` or switch to bash shell. |
+| `wprintf` & `std::wcout` unable to print >2 byte (non-BMP) "surrogate" characters to Windows command prompt. | Write whole strings with `WriteConsoleW` (see `wprintf_console` & `ConsoleStreambuf`) or switch to bash shell. |
 
 Please contact the repo author if you discover more problems or are aware of better solutions or workarounds.
 
@@ -43,3 +43,6 @@ UTF-16 BE display does _not_ work by default.
 * [Emojis not displayed when using wprintf](https://aka.ms/AA145gq0)
 * [Issue with Printing Emojis on Windows Console](https://github.com/microsoft/terminal/issues/18124) - closed but not fixed
 * [Emojis are not displayed when using wide string output](https://github.com/microsoft/terminal/issues/12457) - closed but not fixed
+
+### Root cause
+The UCRT writes `_O_U16TEXT`/`_O_U8TEXT`/`_O_WTEXT` console output one `wchar_t` per `WriteConsoleW` call, which splits surrogate pairs. Writing whole strings with `WriteConsoleW` avoids this (and is ~5x faster). `SetConsoleOutputCP(CP_UTF8)` with narrow `printf` also works.
